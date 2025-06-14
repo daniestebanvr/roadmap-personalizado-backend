@@ -14,6 +14,7 @@ public class Main {
 
     // Declaração de variáveies padrão
     static String nome, email;
+    static int idade;
 
     // Validação de email
     static String emailValido = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$"; // Uso do regex
@@ -22,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int idade, opcao;
+        int opcao;
 
         do {
             System.out.println("\n===== MENU PRINCIPAL =====");
@@ -42,6 +43,10 @@ public class Main {
                     procurarUsuario();
                     Thread.sleep(3000);
                     break;
+                case 4:
+                    atualizaIdade();
+                    Thread.sleep(3000);
+                    break;
             }
         } while (opcao != 6);
 
@@ -52,13 +57,13 @@ public class Main {
         int opcao;
         while (true) {
             try {
-                System.err.println("1. Cadastrar Usuário");
-                System.err.println("2. Listar todos os usuários");
-                System.err.println("3. Buscar usuário por nome");
-                System.err.println("4. Atualizar idade de um usuário");
-                System.err.println("5. Excluir um usuário");
-                System.err.println("6. Sair");
-                System.err.println("Escolha a opção:");
+                System.out.println("1. Cadastrar Usuário");
+                System.out.println("2. Listar todos os usuários");
+                System.out.println("3. Buscar usuário por nome");
+                System.out.println("4. Atualizar idade de um usuário");
+                System.out.println("5. Excluir um usuário");
+                System.out.println("6. Sair");
+                System.out.println("Escolha a opção:");
                 opcao = resultadoScanner.nextInt();
 
                 if (opcao > 0 && opcao <= 6) {
@@ -93,10 +98,24 @@ public class Main {
             i++;
         } while (!matcherEmail.matches());
 
-        System.err.println("Digite a idade do usuário:");
-        idade = resultadoScanner.nextInt();
-        usuarios.add(new Usuario(nomeUsuario, email, idade));
-        System.out.println("Usuário cadastrado com sucesso!");
+        while (true) {
+            try {
+                System.err.println("Digite a idade do usuário:");
+                idade = resultadoScanner.nextInt();
+                resultadoScanner.nextLine();
+                if (idade < 1 || idade > 100) {
+                    System.out.println("\nIdade inválida!\n");
+                } else {
+                    usuarios.add(new Usuario(nomeUsuario, email, idade));
+                    System.out.println("\nUsuário cadastrado com sucesso!\n");
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("\nPor favor, insira um número\n");
+                resultadoScanner.nextLine();
+            }
+        }
+
     }
 
     // Listando usuários
@@ -110,18 +129,60 @@ public class Main {
         }
     }
 
+    // Procurar usuário pelo nome
     static void procurarUsuario() {
+        if (usuarios.isEmpty()) {
+            System.out.println("\nNenhum usuário existente...\n");
+            return;
+        }
+
+        System.out.println("Nome do usuário (já cadastrado)");
+        nome = resultadoScanner.nextLine().toUpperCase();
+
+        for (Usuario usuario : usuarios) {
+            if (usuario.getNome().equalsIgnoreCase(nome)) {
+                System.out.println("Usuário encontrado");
+                usuario.apresentaUsuario();
+                return;
+            } else {
+                System.out.println("Usuário não encontrado, verifique se o nome foi inserido corretamente ou se está registrado no sistema");
+            }
+        }
+    }
+
+    // Método para atualizar a idade do usuário
+    static void atualizaIdade() {
+        if (usuarios.isEmpty()) {
+            System.out.println("\nNenhum usuário existente...\n");
+            return;
+        }
+
         System.out.println("Nome do usuário (já cadastrado)");
         nome = resultadoScanner.nextLine();
 
         for (Usuario usuario : usuarios) {
-            if (usuario.getNome() == nome) {
+            if (usuario.getNome().equalsIgnoreCase(nome)) {
                 System.out.println("Usuário encontrado");
                 usuario.apresentaUsuario();
-                return;
-            }
 
-            System.out.println("Procurando...");
+                while (true) {
+                    try {
+                        System.out.println("Nova idade");
+                        idade = resultadoScanner.nextInt();
+
+                        if (idade < 1 && idade > 100) {
+                            System.out.println("Idade inválida");
+                        } else {
+                            usuario.setIdade(idade);
+                            System.out.println("Idade ATUALIZADA!");
+                            usuario.apresentaUsuario();
+                            return;
+                        }
+                    } catch (InputMismatchException e) {
+                        // TODO: handle exception
+                    }
+                }
+            }
         }
     }
 }
