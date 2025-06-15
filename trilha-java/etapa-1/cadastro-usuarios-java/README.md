@@ -45,21 +45,3 @@ Este projeto consiste em uma aplicação de console em Java que permite o **cada
 | Validação de dados         | Entradas obrigatórias e tratamento de erros             |
 | Estrutura de menu          | Navegação por opções no terminal                        |
 
----
-
-## 🗃️ Estrutura do Projeto
-
-cadastro-usuarios-java/
-├── README.md
-├── docs/
-│   └── explicacao.pdf (opcional)
-├── sql/                      # Pasta reservada para scripts SQL (vazia neste projeto)
-├── src/
-│   └── Main.java             # Código-fonte principal
-├── tests/
-│   └── TestesManuais.txt     # Roteiro de testes manuais
-├── .gitignore                # Arquivos a serem ignorados pelo Git
-├── Dockerfile (opcional)    # Configuração para container Docker
-├── docker-compose.yml (opcional)
-├── LICENSE                   # Licença do projeto (MIT)
-└── CONTRIBUTING.md (opcional) # Diretrizes de contribuição
