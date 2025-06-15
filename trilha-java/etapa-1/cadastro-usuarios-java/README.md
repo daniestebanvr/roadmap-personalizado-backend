@@ -47,24 +47,3 @@ Este projeto consiste em uma aplicação de console em Java que permite o **cada
 | Validação de dados         | Entradas obrigatórias e tratamento de erros             |
 | Regex                      | Validação de e-mail com expressões regulares            |
 | Estrutura de menu          | Navegação por opções no terminal                        |
-
----
-
-## 📂 Estrutura do Projeto
-
-```bash
-cadastro-usuarios-java/
-├── README.md
-├── docs/
-│   └── explicacao.pdf (opcional)
-├── sql/ (vazio)
-├── src/
-│   └── Main.java
-│   └── Usuario.java
-├── tests/
-│   └── TestesManuais.txt
-├── .gitignore
-├── Dockerfile (opcional)
-├── docker-compose.yml (opcional)
-├── LICENSE
-└── CONTRIBUTING.md (opcional)
