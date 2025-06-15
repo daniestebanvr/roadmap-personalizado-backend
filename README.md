@@ -8,7 +8,7 @@
 
 | Etapa | Tema                                  | Descrição                                                             | Status |
 |-------|---------------------------------------|----------------------------------------------------------------------|--------|
-| 1     | Fundamentos                           | Lógica, POO e projetos console                                       | 🚧 Em andamento |
+| 1     | Fundamentos                           | Lógica, POO e projetos console                                       | ✅ Concluído - Depurando...|
 | 2     | APIs + Banco de Dados                 | Spring Boot / ASP.NET + PostgreSQL, REST, CRUD                       | ⏳ Em breve     |
 | 3     | Segurança e DevOps                    | JWT, Docker, CI/CD, boas práticas de API segura                      | ⏳ Em breve     |
 | 4     | Projeto Final + Portfólio             | Projeto completo com autenticação, roles, deploy                     | ⏳ Em breve     |
