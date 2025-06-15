@@ -1,8 +1,4 @@
-import java.util.Scanner;
 import java.util.regex.*;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.*;
 
 public class Main {
@@ -47,6 +43,10 @@ public class Main {
                     atualizaIdade();
                     Thread.sleep(3000);
                     break;
+                case 5:
+                    excluirUsuario();
+                    Thread.sleep(3000);
+                    break;
             }
         } while (opcao != 6);
 
@@ -72,7 +72,7 @@ public class Main {
                     System.err.println("Digite um número de um a 6");
                 }
             } catch (InputMismatchException e) {
-                System.err.println("Entrada Inválida! Insira um número");
+                System.err.println("\nEntrada Inválida! Insira um número\n");
                 resultadoScanner.nextLine();
             }
         }
@@ -145,7 +145,8 @@ public class Main {
                 usuario.apresentaUsuario();
                 return;
             } else {
-                System.out.println("Usuário não encontrado, verifique se o nome foi inserido corretamente ou se está registrado no sistema");
+                System.out.println(
+                        "Usuário não encontrado, verifique se o nome foi inserido corretamente ou se está registrado no sistema");
             }
         }
     }
@@ -170,7 +171,7 @@ public class Main {
                         System.out.println("Nova idade");
                         idade = resultadoScanner.nextInt();
 
-                        if (idade < 1 && idade > 100) {
+                        if (idade < 1 || idade > 100) {
                             System.out.println("Idade inválida");
                         } else {
                             usuario.setIdade(idade);
@@ -179,10 +180,71 @@ public class Main {
                             return;
                         }
                     } catch (InputMismatchException e) {
-                        // TODO: handle exception
+                        System.out.println("\nValor digitado  INVÁLIDO\n");
+                        resultadoScanner.nextLine();
                     }
                 }
             }
+        }
+    }
+
+    // Método para excluir o usuário
+    static void excluirUsuario() {
+        String resposta;
+
+        if (usuarios.isEmpty()) {
+            System.out.println("\nNenhum usuário existente...\n");
+            return;
+        }
+
+        while (true) {
+            try {
+                System.out.println("Nome do usuário que deseja excluir:");
+                String nome = resultadoScanner.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.err.println("Insira um valor válido");
+            }
+        }
+
+        Iterator<Usuario> iterator = usuarios.iterator();
+        boolean encontrado = false;
+
+        while (iterator.hasNext()) {
+            Usuario usuario = iterator.next();
+
+            if (usuario.getNome().equalsIgnoreCase(nome)) {
+                encontrado = true;
+
+                System.out.println("Usuário encontrado:");
+                usuario.apresentaUsuario();
+
+                while (true) {
+                    try {
+                        System.out.println("Excluir usuário? S/N");
+                        resposta = resultadoScanner.nextLine().toUpperCase();
+
+                        if (resposta.equals("S")) {
+                            iterator.remove(); // ← forma segura de remover durante a iteração
+                            System.out.println("Usuário deletado com sucesso.");
+                            return; // finaliza após remoção
+                        } else if (resposta.equals("N")) {
+                            System.out.println("Operação de exclusão cancelada.");
+                            return;
+                        } else {
+                            System.out.println("Digite S para SIM ou N para NÃO");
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("\nValor digitado INVÁLIDO\n");
+                        resultadoScanner.nextLine(); // limpa o buffer
+                    }
+                }
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Usuário não encontrado.");
         }
     }
 }
