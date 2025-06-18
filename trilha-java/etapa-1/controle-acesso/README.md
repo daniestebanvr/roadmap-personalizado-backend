@@ -1,18 +1,39 @@
-## Getting Started
+# 🔐 E2P.java – Sistema de Controle de Acesso com Validação
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+> Segundo exercício da Etapa 1 do Roadmap Back-End em Java de Daniel Esteban (@daniestebanvr)  
+> Nível: Iniciante Avançado | Foco: Validação, Loops, Menu Interativo, Boas Práticas
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 📘 Descrição
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Este projeto implementa um **sistema de controle de acesso simples via console**, que simula o processo de login com validação de tentativas, exibição de menu e alteração dinâmica de senha.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+O exercício tem como objetivo consolidar o uso de estruturas de controle (`if`, `do-while`, `switch`), entrada de dados (`Scanner`), tratamento de exceções e aplicação de boas práticas como a modularização por métodos e encapsulamento via classes.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+---
 
-## Dependency Management
+## 🎯 Funcionalidades
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Validação de **usuário e senha padrão**
+- **Bloqueio após 3 tentativas de login** incorretas
+- **Menu persistente** com as opções:
+  1. Ver perfil do usuário
+  2. Alterar senha em tempo real
+  3. Encerrar sessão
+- Atualização do objeto `admin` com nova senha
+- Tratamento de entrada inválida via `try/catch`
+
+---
+
+## 🧠 Conceitos Praticados
+
+| Conceito               | Aplicação no projeto                   |
+|------------------------|----------------------------------------|
+| `Scanner`              | Captura de entrada do usuário          |
+| `do-while`             | Laços para login e menu persistente    |
+| `if/else`              | Validação de autenticação              |
+| `switch`               | Controle de fluxo no menu              |
+| `try/catch`            | Tratamento de exceções de entrada      |
+| Orientação a Objetos   | Classe `Usuario` e encapsulamento      |
+| Métodos                | Separação da lógica por responsabilidade|
